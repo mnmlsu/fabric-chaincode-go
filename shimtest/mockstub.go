@@ -387,6 +387,12 @@ func (stub *MockStub) GetQueryResultWithPagination(query string, pageSize int32,
 	return nil, nil, nil
 }
 
+// GetAllStatesCompositeKeyWithPagination ...
+func (stub *MockStub) GetAllStatesCompositeKeyWithPagination(pageSize int32,
+	bookmark string) (shim.StateQueryIteratorInterface, *pb.QueryResponseMetadata, error) {
+	return nil, nil, nil
+}
+
 // InvokeChaincode locally calls the specified chaincode `Invoke`.
 // E.g. stub1.InvokeChaincode("othercc", funcArgs, channel)
 // Before calling this make sure to create another MockStub stub2, call shim.NewMockStub("othercc", Chaincode)

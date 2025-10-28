@@ -579,6 +579,19 @@ func (s *ChaincodeStub) GetQueryResultWithPagination(query string, pageSize int3
 	return s.handleGetQueryResult(collection, query, metadata)
 }
 
+// GetAllStatesCompositeKeyWithPagination ...
+func (s *ChaincodeStub) GetAllStatesCompositeKeyWithPagination(pageSize int32,
+	bookmark string) (StateQueryIteratorInterface, *pb.QueryResponseMetadata, error) {
+	collection := ""
+	metadata, err := createQueryMetadata(pageSize, bookmark)
+	if err != nil {
+		return nil, nil, err
+	}
+	startKey := compositeKeyNamespace
+	endKey := compositeKeyNamespace + string(maxUnicodeRuneValue)
+	return s.handleGetStateByRange(collection, startKey, endKey, metadata)
+}
+
 // Next ...
 func (iter *StateQueryIterator) Next() (*queryresult.KV, error) {
 	result, err := iter.nextResult(StateQueryResult)
